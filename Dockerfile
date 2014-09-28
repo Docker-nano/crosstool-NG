@@ -1,7 +1,6 @@
 FROM debian:6
 MAINTAINER Bilge <bilge@scriptfusion.com>
 
-ENV	HOME	/root
 WORKDIR	/root
 
 # Install dependencies.
@@ -13,7 +12,7 @@ RUN	apt-get update && DEBIAN_FRONTEND=noninteractive\
 RUN	wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.20.0.tar.xz 2>&1 &&\
 	tar xf crosstool-ng-*.tar* &&\
 	cd crosstool-ng-* &&\
-	./configure && make && make install clean &&\
+	./configure && make && make install &&\
 	rm -rf ../*
 
 # Download and unpack uClibc.
@@ -28,6 +27,7 @@ RUN	mkdir crosstool-NG &&\
 	ln -s /etc/uclibc/uclibc.conf uClibc/.config
 
 COPY	in/toolchain-build	/usr/local/bin/
+COPY	in/crosstool-configure	/usr/local/bin/
 COPY	in/uclibc-configure	/usr/local/bin/
 COPY	in/crosstool-ng.conf	/etc/crosstool-ng/crosstool-ng.conf
 COPY	in/uclibc.conf		/etc/uclibc/uclibc.conf
