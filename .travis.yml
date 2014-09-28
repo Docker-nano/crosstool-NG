@@ -1,0 +1,12 @@
+language: generic
+
+install:
+  - sudo ./.travis.sh >/dev/null
+
+script:
+  - sudo toolchain-build 2>~/error.log | tee ~/build.log |
+    grep -Pv '^\[(ALL|FILE)\s*\]'
+
+after_failure:
+  - tail -30 ~/error.log
+  - tail -30 ~/build.log
