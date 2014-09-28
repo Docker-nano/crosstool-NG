@@ -1,0 +1,28 @@
+#!/bin/bash
+
+build() {
+	if [[ ! -d "${build_dir="$HOME"/crosstool-NG}" ]]; then
+		echo Build directory does not exist: "$build_dir" >&2
+		return 1
+	fi
+
+	echo Building in "$build_dir"...
+
+	(cd "$build_dir" && CT_ALLOW_BUILD_AS_ROOT_SURE=LOL ct-ng build)
+}
+
+pack() {
+	cd ~/x-tools
+
+	if [[ -d ${last_build=$(ls -1dt */ | head -1)} ]]; then
+		echo Packing "$last_build"...
+
+		if tar vcJf ${tar="${last_build%/}".tar.xz} --totals "$last_build"; then
+			echo Finished packing "$tar" \($((d=2**20, ($(stat -c%s "$tar") +d/2) /d)) MB\).
+
+			ln -sf "$PWD/$tar" ~/toolchain
+		fi
+	fi
+}
+
+build && pack
