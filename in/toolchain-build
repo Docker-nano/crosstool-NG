@@ -18,7 +18,9 @@ pack() {
 		echo Packing "$last_build"...
 
 		if tar vcJf ${tar="${last_build%/}".tar.xz} --totals "$last_build"; then
-			echo Finished packing "$tar" \($((d=2**20, ($(stat -c%s "$tar") +d/2) /d)) MB\).
+			echo Finished packing "$tar"\
+				\($((d=2**20, ($(stat -c%s "$tar") +d/2) /d)) MB,\
+				MD5: $(md5sum "$tar" | cut -f1 -d' ')\).
 
 			ln -sf "$PWD/$tar" ~/toolchain
 		fi

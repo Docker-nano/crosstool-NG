@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker cp CT-NG:/root/toolchain .
