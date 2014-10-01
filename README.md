@@ -8,8 +8,8 @@ Building
 
 To build the default toolchain follow these steps.
 
-1. `./build\ image.sh` – Build the Docker image locally and tag as *ct-ng*.
-2. `./build\ toolchain.bash` – Build the toolchain from the local *ct-ng* image.
+1. `./build\ image` – Build the Docker image locally and tag as *ct-ng*.
+2. `./build\ toolchain` – Build the toolchain from the local *ct-ng* image.
 
 The compressed toolchain tarball is copied to your working directory.
 
