@@ -10,7 +10,7 @@ apt-get update && DEBIAN_FRONTEND=noninteractive\
 wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.22.0.tar.xz 2>&1 &&\
 	tar xf crosstool-ng-*.tar* &&\
 	(
-		cd crosstool-ng* &&\
+		cd crosstool-ng &&\
 		./configure && make && make install &&\
 		rm -rf ../crosstool-ng-*
 	)
