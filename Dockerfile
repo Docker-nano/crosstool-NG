@@ -1,21 +1,21 @@
-FROM debian:6
+FROM ubuntu:trusty
 MAINTAINER Bilge <bilge@scriptfusion.com>
 
 WORKDIR	/root
 
 # Install dependencies.
 RUN	apt-get update && DEBIAN_FRONTEND=noninteractive\
-	apt-get install -y build-essential gperf bison flex texinfo wget gawk libtool automake libncurses5-dev
+	apt-get install -y build-essential gperf bison flex texinfo wget gawk libtool automake libncurses5-dev help2man
 
 # Download and compile crosstool-NG.
 RUN	wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.22.0.tar.xz 2>&1 &&\
 	tar xf crosstool-ng-*.tar* &&\
-	cd crosstool-ng-* &&\
+	cd crosstool-ng &&\
 	./configure && make && make install &&\
 	rm -rf ../crosstool-ng*
 
 # Download and unpack uClibc.
-RUN	wget http://www.uclibc.org/downloads/uClibc-0.9.33.2.tar.xz 2>&1 &&\
+RUN	wget --no-check-certificate https://www.uclibc.org/downloads/uClibc-0.9.33.2.tar.xz 2>&1 &&\
 	tar xf uClibc-*.tar* &&\
 	rm *.tar*
 
