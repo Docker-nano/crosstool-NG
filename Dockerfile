@@ -15,7 +15,7 @@ RUN	wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.22.0.tar.x
 	rm -rf ../crosstool-ng*
 
 # Download and unpack uClibc.
-RUN	wget http://www.uclibc.org/downloads/uClibc-0.9.33.2.tar.xz 2>&1 &&\
+RUN	wget --no-check-certificate https://www.uclibc.org/downloads/uClibc-0.9.33.2.tar.xz 2>&1 &&\
 	tar xf uClibc-*.tar* &&\
 	rm *.tar*
 
