@@ -4,13 +4,13 @@ cd ~
 
 # Install dependencies.
 apt-get update && DEBIAN_FRONTEND=noninteractive\
-	apt-get install -y build-essential gperf bison flex texinfo wget gawk libtool automake libncurses5-dev
+	apt-get install -y build-essential gperf bison flex texinfo wget gawk libtool automake libncurses5-dev help2man
 
 # Download and compile crosstool-NG.
-wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.20.0.tar.xz 2>&1 &&\
+wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.22.0.tar.xz 2>&1 &&\
 	tar xf crosstool-ng-*.tar* &&\
 	(
-		cd crosstool-ng-* &&\
+		cd crosstool-ng* &&\
 		./configure && make && make install &&\
 		rm -rf ../crosstool-ng-*
 	)
