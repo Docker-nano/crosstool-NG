@@ -23,7 +23,7 @@ rm *.tar*
 mkdir crosstool-NG /etc/uclibc &&\
 	ln -s uClibc-* uClibc &&\
 	ln -s /etc/crosstool-ng/crosstool-ng.conf crosstool-NG/.config
-	ln -s /root/uClibc/.config /etc/uclibc/uclibc.conf
+	ln -s uClibc/.config /etc/uclibc/uclibc.conf
 
 cd -
 
