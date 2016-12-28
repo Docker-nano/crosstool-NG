@@ -1,3 +1,11 @@
 #!/bin/sh
 
-docker cp CT-NG:/root/toolchain .
+# Copy link.
+docker cp CT-NG:/root/toolchain "${tmp=$(mktemp)}"
+
+# Determine name of archive from link.
+name=$(basename "$(readlink "$tmp")")
+rm "$tmp"
+
+# Copy archive using name from link.
+docker cp -L CT-NG:/root/toolchain "$name"
