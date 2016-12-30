@@ -1,0 +1,30 @@
+notifications:
+  email: false
+
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+script:
+  - ./build\ image
+  - ./build\ toolchain
+
+  # Test toolchain readable.
+  - toolchain=($TRAVIS_BUILD_DIR/*.tar.xz);
+    [[ -r $toolchain ]]
+
+  # Test toolchain contains required files.
+  - |
+    files=$(tar tf "$toolchain")
+    patterns=(
+      /cc1
+      /cc1plus
+      -uclibc-gcc
+      -uclibc-g++
+    )
+    for pattern in "${patterns[@]}"; do
+      (($(grep -c -- "$pattern$" <<<"$files") == 1)) || exit
+    done

@@ -4,4 +4,4 @@
 docker stop CT-NG >&- 2>&-
 docker rm CT-NG >&- 2>&-
 
-docker run -it --name=CT-NG ct-ng
+docker run -it --name=CT-NG ct-ng "$@"

@@ -2,10 +2,4 @@
 
 cd "$(dirname "$0")"
 
-if docker run -a STDOUT --cidfile=.cid ct-ng toolchain-build; then
-	container=$(cat .cid)
-
-	(./pull\ toolchain) && docker rm $container
-fi
-
-rm .cid
+./run\ container toolchain-build && ./pull\ toolchain
