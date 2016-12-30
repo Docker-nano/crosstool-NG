@@ -1,6 +1,8 @@
 crosstool-NG container
 ======================
 
+[![Build status][Build image]][Build]
+
 This is a [Docker](http://docker.com) container for [crosstool-NG](http://crosstool-ng.org) with configurable [uClibc](http://www.uclibc.org) for building toolchains. It was created to support the [Docker nano](https://github.com/Docker-nano) project.
 
 Building
@@ -30,3 +32,5 @@ To copy the toolchain to the host run `pull toolchain` from the host. The follow
 
 If you wish to build the modified toolchain outside the container you must first `pull configs` then follow the steps in [Building](#building) to rebuild the image.
 
+  [Build]: https://travis-ci.org/Docker-nano/crosstool-NG
+  [Build image]: https://travis-ci.org/Docker-nano/crosstool-NG.svg?branch=master "Build status"
