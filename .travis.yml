@@ -24,7 +24,8 @@ script:
       /cc1plus
       -uclibc-gcc
       -uclibc-g++
+      /utmpx.h # Needed for Busybox/Coreutils
     )
     for pattern in "${patterns[@]}"; do
-      (($(grep -c -- "$pattern$" <<<"$files") == 1)) || exit
+      grep -- "$pattern$" <<<"$files" || exit # Todo: find a better way to fail
     done
